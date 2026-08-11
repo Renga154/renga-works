@@ -30,7 +30,7 @@ const pressStart = Press_Start_2P({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Renga Works — 作ったものと、その作り方",
+    default: "Renga Works",
     template: "%s | Renga Works",
   },
   description:
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Renga Works",
-    title: "Renga Works — 作ったものと、その作り方",
+    title: "Renga Works",
     description:
       "AIコーディングエージェントを使って、iOSアプリ・SaaS・OSSを本番まで作っています。",
     // The card image comes from app/opengraph-image.tsx, which Next wires up
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@TanFollowAI",
     creator: "@TanFollowAI",
-    title: "Renga Works — 作ったものと、その作り方",
+    title: "Renga Works",
     description:
       "AIコーディングエージェントを使って、iOSアプリ・SaaS・OSSを本番まで作っています。",
   },
