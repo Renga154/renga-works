@@ -126,9 +126,17 @@ export function WorkModal({
                 </button>
               </div>
 
-              <div className="grid flex-1 gap-0 overflow-y-auto md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
-                <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden border-b border-line md:aspect-auto md:min-h-full md:border-r md:border-b-0">
-                  <WorkThumb work={work} />
+              <div className="flex flex-1 flex-col overflow-y-auto">
+                {/*
+                 * Stacked rather than side-by-side. Side-by-side stretched the
+                 * capture to the description's height and cropped its sides
+                 * off, and even fixed it only gave the screenshot half the
+                 * modal's width. Full width keeps the whole screen visible and
+                 * roughly doubles how large it renders, which is the point of
+                 * showing it at all.
+                 */}
+                <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden border-b border-line bg-[#0b0b0d]">
+                  <WorkThumb work={work} fit="contain" />
                 </div>
 
                 <div className="flex flex-col p-5 sm:p-6">

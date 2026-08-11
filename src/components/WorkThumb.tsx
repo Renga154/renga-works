@@ -15,9 +15,15 @@ import type { Work } from "@/content/works";
 export function WorkThumb({
   work,
   priority = false,
+  fit = "cover",
 }: {
   work: Work;
   priority?: boolean;
+  /**
+   * Cards crop to fill ("cover"); the modal shows the whole capture
+   * ("contain"), since that is where someone actually reads the screen.
+   */
+  fit?: "cover" | "contain";
 }) {
   if (work.image) {
     return (
@@ -27,7 +33,9 @@ export function WorkThumb({
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 640px"
         priority={priority}
-        className="object-cover object-top"
+        className={
+          fit === "contain" ? "object-contain" : "object-cover object-top"
+        }
       />
     );
   }
