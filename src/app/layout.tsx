@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { LangProvider } from "@/lib/i18n";
 import { Backdrop } from "@/components/Backdrop";
 import { SITE_URL } from "@/lib/site";
@@ -61,6 +62,16 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
+/**
+ * Analytics loads only on the production deployment, and only once a
+ * measurement ID is configured. Preview deployments and local development
+ * would otherwise pollute the numbers with your own testing — which is the
+ * usual reason a fresh property shows traffic nobody actually sent.
+ */
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const ANALYTICS_ENABLED =
+  Boolean(GA_ID) && process.env.VERCEL_ENV === "production";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -78,6 +89,7 @@ export default function RootLayout({
           {children}
         </LangProvider>
       </body>
+      {ANALYTICS_ENABLED ? <GoogleAnalytics gaId={GA_ID!} /> : null}
     </html>
   );
 }
