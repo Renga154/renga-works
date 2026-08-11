@@ -44,7 +44,10 @@ export function Nav() {
         className="panel pointer-events-auto flex w-full max-w-4xl items-center gap-2 rounded-full py-2 pr-2 pl-3 sm:gap-4 sm:pl-4"
       >
         {/* Window-chrome dots — the motif the whole site leans on. */}
-        <span className="hidden shrink-0 items-center gap-1.5 sm:flex" aria-hidden="true">
+        <span
+          className="hidden shrink-0 items-center gap-1.5 sm:flex"
+          aria-hidden="true"
+        >
           <i className="block size-2.5 rounded-full bg-[#ff5f57]" />
           <i className="block size-2.5 rounded-full bg-[#febc2e]" />
           <i className="block size-2.5 rounded-full bg-[#28c840]" />
@@ -54,8 +57,7 @@ export function Nav() {
           href="#home"
           className="shrink-0 font-mono text-[13px] font-semibold tracking-tight whitespace-nowrap text-fg"
         >
-          <span className="text-accent">R</span>enga
-          <span className="text-muted">.works</span>
+          <span className="text-accent">R</span>enga Works
         </a>
 
         {/* Narrow screens scroll this row rather than hiding it — the page is
@@ -92,9 +94,7 @@ export function Nav() {
                 onClick={() => setLang(l)}
                 aria-pressed={lang === l}
                 className={`rounded-full px-2.5 py-1 font-mono text-[11px] tracking-wider transition-colors ${
-                  lang === l
-                    ? "bg-fg text-bg"
-                    : "text-muted hover:text-fg"
+                  lang === l ? "bg-fg text-bg" : "text-muted hover:text-fg"
                 }`}
               >
                 {l.toUpperCase()}

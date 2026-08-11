@@ -135,6 +135,39 @@ export const works: Work[] = [
     icon: "/works/icon-tracelit.png",
   },
   {
+    id: "sumihajime",
+    name: "スミハジメ",
+    status: "production",
+    year: "2026",
+    tagline: {
+      ja: "東京への転入手続きを、期限順のやることリストにする（非公式）",
+      en: "Turns moving into Tokyo into a deadline-ordered checklist. Unofficial.",
+    },
+    body: {
+      ja: "住む区・引越し日・世帯構成を選ぶと、必要な行政手続きが期限順のチェックリストになって出てくる非公式サービス。東京23区すべてに対応し、残る39市町村は「未対応」と画面に明示している。設計の芯は「間違えないこと」より「間違いを混ぜないこと」に置いた。どの手続きが該当するかの判定はLLMに任せず、バージョン付きの宣言的JSONルールとTypeScriptの純関数評価器で行う。同じ入力なら常に同じ結果が返るし、根拠がなければ推測せず「要確認」と表示する。公開するタスクは全件、人手レビューで承認した公式ソースと最終確認日を持っていて、未承認のデータを参照していたらビルドが落ちる公開ゲートをコードで強制している。選んだ区と違う自治体の情報が混ざることは1件でも不合格として扱う。RAG自動評価179問で根拠のない断定0件・他自治体の混入0件、自動テスト2,385本、アクセシビリティ検査（axe）の重大違反0件。都知事杯オープンデータ・ハッカソン2026への応募作品。",
+      en: 'Pick your ward, your moving date and your household, and the municipal paperwork comes back as a checklist ordered by deadline. Unofficial. All 23 special wards of Tokyo are covered; the remaining 39 municipalities are labelled as unsupported on screen rather than quietly omitted. The core design principle is less "don\'t be wrong" than "don\'t mix wrongness in". Deciding which procedures apply is never delegated to an LLM — it runs on versioned declarative JSON rules evaluated by pure TypeScript functions, so identical input always yields identical output, and anything without a source is shown as "needs checking" instead of guessed. Every published task carries a human-reviewed official source and a last-verified date, and a publication gate fails the build if anything references unapproved data. A single instance of another ward\'s information leaking in counts as a failure. Across 179 automated RAG evaluations: zero unsourced assertions, zero cross-municipality contamination. 2,385 automated tests; zero critical accessibility violations under axe. Entered in the Tokyo Governor\'s Cup Open Data Hackathon 2026.',
+    },
+    tech: [
+      "Cloudflare Workers",
+      "D1",
+      "Vectorize",
+      "R2",
+      "Hono",
+      "React",
+      "Vite",
+      "TypeScript",
+      "RAG",
+    ],
+    links: [
+      {
+        kind: "site",
+        label: L.site,
+        href: "https://app.sumihajime.workers.dev",
+      },
+    ],
+    image: "/works/sumihajime.png",
+  },
+  {
     id: "agentrisk",
     name: "AgentRisk",
     status: "oss",
