@@ -1,5 +1,7 @@
 # Renga Works — ポートフォリオサイト
 
+**公開URL: https://renga-works.vercel.app**
+
 作った9本のプロダクトと技術記事を1ページにまとめた個人サイト。SNS のプロフィール欄から飛ぶ先として作っているので、**職務経歴書ではない**（所属・学歴・業務数値は載せない）。
 
 Next.js 16 (App Router) / TypeScript / Tailwind v4 / React Three Fiber。
