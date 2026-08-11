@@ -17,6 +17,19 @@ export function About() {
               {p}
             </p>
           ))}
+
+          {/* Housekeeping, so it sits quieter than the prose above it. */}
+          <p className="border-t border-line pt-5 text-[11px] leading-[1.9] text-muted/80">
+            {t(profile.analyticsNotice.text)}{" "}
+            <a
+              href={profile.analyticsNotice.optOutHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted underline underline-offset-2 transition-colors hover:text-fg"
+            >
+              {t(profile.analyticsNotice.optOutLabel)}
+            </a>
+          </p>
         </div>
 
         <ul className="grid h-fit gap-2 sm:grid-cols-2 lg:grid-cols-1">

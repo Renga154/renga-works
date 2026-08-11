@@ -35,6 +35,24 @@ export const profile = {
     ],
   },
 
+  /**
+   * External-transmission disclosure. Japan's amended Telecommunications
+   * Business Act asks that a site state where visitor information is sent,
+   * what is sent, and why — so this names all three rather than saying
+   * "we use cookies" and leaving it there.
+   */
+  analyticsNotice: {
+    text: {
+      ja: "このサイトでは、アクセス状況を把握するために Google アナリティクスを利用しています。Cookie を通じて、閲覧したページや滞在時間などの情報が Google へ送信されます。氏名・連絡先といった個人を特定できる情報は送信していません。ブラウザの設定、または次のアドオンで停止できます。",
+      en: "This site uses Google Analytics to understand how it is being used. Cookies send information such as which pages were opened and for how long to Google. Nothing that identifies you personally — name, contact details — is sent. You can stop this through your browser settings, or with the add-on below.",
+    },
+    optOutLabel: {
+      ja: "Google アナリティクス オプトアウト アドオン",
+      en: "Google Analytics opt-out add-on",
+    },
+    optOutHref: "https://tools.google.com/dlpage/gaoptout",
+  },
+
   socials: [
     {
       id: "github",
@@ -68,5 +86,10 @@ export const profile = {
   intro: L10n;
   creed: L10n;
   about: { ja: string[]; en: string[] };
+  analyticsNotice: {
+    text: L10n;
+    optOutLabel: L10n;
+    optOutHref: string;
+  };
   socials: { id: string; label: string; handle: string; href: string }[];
 };
