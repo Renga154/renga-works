@@ -362,5 +362,6 @@ export const works: Work[] = [
     ],
     links: [],
     icon: "/works/icon-nanoka.png",
+    shots: ["/works/nanoka-1.png", "/works/nanoka-2.png"],
   },
 ];
