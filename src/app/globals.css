@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0a0b;
+  --color-surface: #141416;
+  --color-surface-2: #1c1c20;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+  --color-fg: #ededef;
+  --color-muted: #8a8a93;
+  --color-accent: #3fcf8e;
+  --color-accent-2: #4c7dff;
+
+  --font-display: var(--font-press-start), ui-monospace, monospace;
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Noto Sans JP",
+    "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Nav is sticky; keep anchored sections clear of it. */
+    scroll-padding-top: 6.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    /* The 3D layer is fixed behind everything; never let it cause sideways scroll. */
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 30%, transparent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /*
+   * Static backdrop. This is what renders before the 3D chunk arrives, when
+   * WebGL is unavailable, when the user prefers reduced motion, and when the
+   * runtime FPS guard tears the canvas down. It has to look finished on its own.
+   */
+  /* Stacking order behind the content: static (-3) → WebGL (-2) → grain (-1). */
+  .backdrop-static {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+      radial-gradient(
+        60rem 40rem at 8% -5%,
+        color-mix(in oklab, var(--color-accent) 18%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        55rem 38rem at 100% 30%,
+        color-mix(in oklab, var(--color-accent-2) 20%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        40rem 30rem at 50% 110%,
+        color-mix(in oklab, var(--color-accent-2) 10%, transparent),
+        transparent 70%
+      ),
+      var(--color-bg);
+  }
+
+  /* Grain, as an inline SVG so it costs no extra request. */
+  .backdrop-noise {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .panel {
+    background: color-mix(in oklab, var(--color-surface) 70%, transparent);
+    border: 1px solid var(--color-line);
+    backdrop-filter: blur(12px);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-line);
+    background: color-mix(in oklab, var(--color-surface-2) 80%, transparent);
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--color-fg);
+    white-space: nowrap;
+  }
+
+  /* Section eyebrow label, e.g. "// WORKS" */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Pointer-driven tilt on work cards. Composited only — no layout, no paint. */
+  .tilt {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))
+      translateZ(0);
+    transition: transform 0.4s var(--ease-out-quint);
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .tilt-active {
+    transition: transform 0.08s linear;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tilt,
+    .tilt-active {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  .caret::after {
+    content: "";
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    margin-left: 0.08em;
+    background: var(--color-fg);
+    vertical-align: -0.12em;
+    animation: blink 1.06s steps(1) infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
+  }
+}
