@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import { LangProvider } from "@/lib/i18n";
 import { Backdrop } from "@/components/Backdrop";
 import { SITE_URL } from "@/lib/site";
@@ -69,6 +70,17 @@ export const viewport: Viewport = {
  * usual reason a fresh property shows traffic nobody actually sent.
  */
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
+/**
+ * 二つ目の送り先。作っているものを横断して見るためのプロパティで、
+ * Wisp の LP と BOOTH のショップにも同じ ID が入っている。
+ *
+ * このサイトの元からのプロパティは**そのまま残す**。切り替えてしまうと
+ * 履歴が二つに割れる。GA4 は一つのページから複数のプロパティへ送れるので、
+ * 足すだけにした。こちらに送ることで
+ * **短尺 → このサイト → BOOTH** が一本の流れとして見える。
+ */
+const FUNNEL_GA_ID = "G-3Y617WB6F4";
 const ANALYTICS_ENABLED =
   Boolean(GA_ID) && process.env.VERCEL_ENV === "production";
 
@@ -89,7 +101,17 @@ export default function RootLayout({
           {children}
         </LangProvider>
       </body>
-      {ANALYTICS_ENABLED ? <GoogleAnalytics gaId={GA_ID!} /> : null}
+      {ANALYTICS_ENABLED ? (
+        <>
+          <GoogleAnalytics gaId={GA_ID!} />
+          {/* gtag.js は GoogleAnalytics が読み込む。ここは config を足すだけ */}
+          <Script id="ga-funnel" strategy="afterInteractive">
+            {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('config', '${FUNNEL_GA_ID}');`}
+          </Script>
+        </>
+      ) : null}
     </html>
   );
 }
