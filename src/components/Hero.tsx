@@ -102,7 +102,7 @@ export function Hero() {
                 >
                   <span className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide">
                     <BrandIcon
-                      name={s.id}
+                      name={("icon" in s && s.icon) || s.id}
                       className="size-3.5 shrink-0 text-muted transition-colors group-hover:text-accent"
                     />
                     {s.label}

@@ -1,9 +1,17 @@
 "use client";
 
 import { ui, useLang } from "@/lib/i18n";
-import { articles } from "@/content/articles";
+import { articles, type ArticleLink } from "@/content/articles";
 import { Section } from "@/components/Section";
 import { BrandIcon } from "@/components/BrandIcons";
+
+/** 記事リンクの種別 → brandPaths のキー。 */
+const iconFor: Record<ArticleLink["kind"], string> = {
+  zenn: "zenn",
+  qiita: "qiita",
+  devto: "devdotto",
+  site: "globe",
+};
 
 export function Writing() {
   const { lang, t } = useLang();
@@ -41,28 +49,18 @@ export function Writing() {
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2 border-t border-line pt-4">
-                {a.zenn ? (
+                {a.links.map((l) => (
                   <a
-                    href={a.zenn}
+                    key={l.kind}
+                    href={l.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-lg border border-line px-2.5 py-1.5 text-[11px] text-muted transition-colors hover:border-line-strong hover:text-fg"
                   >
-                    <BrandIcon name="zenn" className="size-3" />
-                    Zenn
+                    <BrandIcon name={iconFor[l.kind]} className="size-3" />
+                    {l.label}
                   </a>
-                ) : null}
-                {a.qiita ? (
-                  <a
-                    href={a.qiita}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-line px-2.5 py-1.5 text-[11px] text-muted transition-colors hover:border-line-strong hover:text-fg"
-                  >
-                    <BrandIcon name="qiita" className="size-3" />
-                    Qiita
-                  </a>
-                ) : null}
+                ))}
               </div>
             </article>
           </li>

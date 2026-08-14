@@ -73,11 +73,21 @@ export const profile = {
       href: "https://qiita.com/Renga",
     },
     {
+      id: "devto",
+      icon: "devdotto",
+      label: "dev.to",
+      handle: "@renga154",
+      href: "https://dev.to/renga154",
+    },
+    {
       id: "x",
       label: "X",
       handle: "@TanFollowAI",
       href: "https://x.com/TanFollowAI",
     },
+    // note（@renga_works）と Substack（@renga154）はハンドルを確保済みだが、
+    // まだ1本も出していない。空のプロフィールへ導線を張るのは逆効果なので、
+    // 最初の記事を出した時点でここに追加する。アイコンは brandPaths に用意済み。
   ],
 } satisfies {
   handle: string;
@@ -91,5 +101,6 @@ export const profile = {
     optOutLabel: L10n;
     optOutHref: string;
   };
-  socials: { id: string; label: string; handle: string; href: string }[];
+  /** icon は brandPaths のキー。省略したときは id を使う。 */
+  socials: { id: string; icon?: string; label: string; handle: string; href: string }[];
 };
