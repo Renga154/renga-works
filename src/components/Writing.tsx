@@ -66,6 +66,21 @@ export function Writing() {
           </li>
         ))}
       </ul>
+
+      {/* 英語記事の本体は Wisp のサイト側にある。ここから辿れないと、
+          記事カードの「English」を踏んだ人しか全体に気付けない。 */}
+      <p className="mt-6 text-[13px] text-muted">
+        <a
+          href="https://wisp-gules-mu.vercel.app/blog/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 transition-colors hover:text-fg"
+        >
+          <BrandIcon name="globe" className="size-3.5 shrink-0" />
+          {t(ui.writingNotes)}
+          <span aria-hidden="true">↗</span>
+        </a>
+      </p>
     </Section>
   );
 }

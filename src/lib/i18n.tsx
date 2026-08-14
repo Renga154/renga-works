@@ -107,6 +107,10 @@ export const ui = {
     ja: "作る過程で詰まったことと、その解き方を書いています。",
     en: "What I got stuck on while building, and how I got unstuck.",
   },
+  writingNotes: {
+    ja: "英語版は Wisp のサイトに Notes としてまとめています",
+    en: "The English versions are collected as Notes on the Wisp site",
+  },
   stackTitle: { ja: "使っているもの", en: "Stack" },
   aboutTitle: { ja: "このサイトについて", en: "About" },
 
