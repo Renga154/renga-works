@@ -23,6 +23,23 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    id: "block-pages-as-evidence",
+    date: "2026-08-16",
+    title: {
+      ja: "ブロックページを「証拠」として保存していた",
+      en: "My evidence pipeline was saving Cloudflare block pages as evidence",
+    },
+    summary: {
+      ja: "誹謗中傷の証拠として投稿の実物スクショを撮る機能で、第三者の埋め込みラッパーが 廃止ドメインになり、HTTP 200 のまま Cloudflare のブロックページを保存していた。 失敗が例外ではなく「それらしい画像」として返ってくる、という話。",
+      en: "A third-party embed wrapper went dead and my capture pipeline kept returning HTTP 200 — storing Cloudflare block pages as harassment evidence. When wrappers die, failure arrives as a plausible image.",
+    },
+    links: [
+      { kind: "qiita", label: "Qiita", href: "https://qiita.com/Renga/items/220c25f4be4537c115df" },
+      { kind: "devto", label: "dev.to", href: "https://dev.to/renga154/my-evidence-pipeline-was-saving-cloudflare-block-pages-as-evidence-25ml" },
+      { kind: "site", label: "English", href: "https://wisp-gules-mu.vercel.app/blog/block-pages-as-evidence/" },
+    ],
+  },
+  {
     id: "dev-env-hid-eight-bugs",
     date: "2026-08-15",
     title: {
