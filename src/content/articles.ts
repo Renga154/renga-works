@@ -34,6 +34,7 @@ export const articles: Article[] = [
       en: "Every test had run under __DEV__, so the production-only paths had never executed. Reading them turned up eight defects — each one concealed by a convenience of the development environment itself.",
     },
     links: [
+      { kind: "zenn", label: "Zenn", href: "https://zenn.dev/bricks/articles/dev-env-hid-eight-bugs" },
       { kind: "qiita", label: "Qiita", href: "https://qiita.com/Renga/items/9619d7f7c2ec58cfeb1f" },
       { kind: "devto", label: "dev.to", href: "https://dev.to/renga154/my-dev-environment-was-hiding-eight-production-bugs-50jg" },
       { kind: "site", label: "English", href: "https://wisp-gules-mu.vercel.app/blog/dev-env-hid-eight-bugs/" },
