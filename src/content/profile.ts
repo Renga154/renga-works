@@ -85,9 +85,20 @@ export const profile = {
       handle: "@TanFollowAI",
       href: "https://x.com/TanFollowAI",
     },
-    // note（@renga_works）と Substack（@renga154）はハンドルを確保済みだが、
-    // まだ1本も出していない。空のプロフィールへ導線を張るのは逆効果なので、
-    // 最初の記事を出した時点でここに追加する。アイコンは brandPaths に用意済み。
+    // note と Substack は物語寄りの読み物。技術記事とは別の入口なので末尾に置く。
+    // 2026-08-16 に両方とも1本目を公開したので導線を張った。
+    {
+      id: "note",
+      label: "note",
+      handle: "@renga_works",
+      href: "https://note.com/renga_works",
+    },
+    {
+      id: "substack",
+      label: "Substack",
+      handle: "@renga154",
+      href: "https://renga154.substack.com",
+    },
   ],
 } satisfies {
   handle: string;
