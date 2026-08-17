@@ -41,6 +41,23 @@ export const articles: Article[] = [
     ],
   },
   {
+    id: "xxxl-broke-japanese-worse",
+    date: "2026-08-16",
+    title: {
+      ja: "文字サイズを最大にしたら同じバグが11件出た（日本語は英語より酷く壊れる）",
+      en: "I set the font to the largest size and found the same bug eleven times",
+    },
+    summary: {
+      ja: "Dynamic Type を XXXL にして全画面を撮ったら11件出た。全部同じ原因で、 「横並び固定 × 拡大テキスト」は1つのバグではなくパターンだった。 日本語はどこでも改行できるので、英語のように省略されず1行1文字で縦に積まれる。",
+      en: "Reading the code found none of them. Screenshots at XXXL found eleven, all the same cause — and Japanese broke worse than English, because Japanese can wrap between almost any two characters.",
+    },
+    links: [
+      { kind: "qiita", label: "Qiita", href: "https://qiita.com/Renga/items/b7c881945cbbbc834814" },
+      { kind: "devto", label: "dev.to", href: "https://dev.to/renga154/i-set-the-font-to-the-largest-size-and-found-the-same-bug-eleven-times-496m" },
+      { kind: "site", label: "English", href: "https://wisp-gules-mu.vercel.app/blog/xxxl-broke-japanese-worse/" },
+    ],
+  },
+  {
     id: "dev-env-hid-eight-bugs",
     date: "2026-08-15",
     title: {
