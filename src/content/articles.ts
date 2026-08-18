@@ -52,6 +52,7 @@ export const articles: Article[] = [
       en: "Reading the code found none of them. Screenshots at XXXL found eleven, all the same cause — and Japanese broke worse than English, because Japanese can wrap between almost any two characters.",
     },
     links: [
+      { kind: "zenn", label: "Zenn", href: "https://zenn.dev/bricks/articles/xxxl-broke-japanese-worse" },
       { kind: "qiita", label: "Qiita", href: "https://qiita.com/Renga/items/b7c881945cbbbc834814" },
       { kind: "devto", label: "dev.to", href: "https://dev.to/renga154/i-set-the-font-to-the-largest-size-and-found-the-same-bug-eleven-times-496m" },
       { kind: "site", label: "English", href: "https://wisp-gules-mu.vercel.app/blog/xxxl-broke-japanese-worse/" },
