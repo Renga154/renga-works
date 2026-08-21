@@ -23,6 +23,24 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    id: "accessor-bounds-drift",
+    date: "2026-08-22",
+    title: {
+      ja: "VRM が配布先で弾かれた。手元のビューアは全部「正常」だった",
+      en: "My VRM was rejected at upload and every viewer I own said it was fine",
+    },
+    summary: {
+      ja: "glTF の accessor が宣言する min/max が実データとずれていた。 レンダリングは実データを読むので絵は正常に出る。だから手元のビューアも 自前の検証も全部通り、検証器を持つ配布先に弾かれて初めて気づいた。",
+      en: "The mesh data was correct; the declaration about it was wrong. Rendering never reads min/max, so every local viewer and my own validator passed. Only a distribution target with a real validator caught it.",
+    },
+    links: [
+      { kind: "zenn", label: "Zenn", href: "https://zenn.dev/bricks/articles/accessor-bounds-drift" },
+      { kind: "qiita", label: "Qiita", href: "https://qiita.com/Renga/items/9461c40a1f5d9f6ef6c6" },
+      { kind: "devto", label: "dev.to", href: "https://dev.to/renga154/my-vrm-was-rejected-at-upload-and-every-viewer-i-own-said-it-was-fine-34m7" },
+      { kind: "site", label: "English", href: "https://wisp-gules-mu.vercel.app/blog/accessor-bounds-drift/" },
+    ],
+  },
+  {
     id: "block-pages-as-evidence",
     date: "2026-08-16",
     title: {
