@@ -41,6 +41,23 @@ export const articles: Article[] = [
     ],
   },
   {
+    id: "jitter-is-a-schedule-bug",
+    date: "2026-08-22",
+    title: {
+      ja: "「カクつく」の原因は補間ではなく日程表だった（動きを疑う順番）",
+      en: "The jitter wasn't in the interpolation. It was in the schedule.",
+    },
+    summary: {
+      ja: "1つの症状から性質の違う3つの原因が出た。本命は日程表で、間隔5秒に対して 動きが9秒あり重なっていた。折れ点の判定は標本を2倍にして跳びが半分に なるかで見る。振幅で割ると大きい動きが不利になって使えない。",
+      en: "One symptom, three unrelated causes. The real one was the timetable: a 5-second interval against a 9-second motion. Also a threshold-free kink test — double the samples and see whether the jump halves.",
+    },
+    links: [
+      { kind: "qiita", label: "Qiita", href: "https://qiita.com/Renga/items/2839ed077c8818950422" },
+      { kind: "devto", label: "dev.to", href: "https://dev.to/renga154/the-jitter-wasnt-in-the-interpolation-it-was-in-the-schedule-557p" },
+      { kind: "site", label: "English", href: "https://wisp-gules-mu.vercel.app/blog/jitter-is-a-schedule-bug/" },
+    ],
+  },
+  {
     id: "block-pages-as-evidence",
     date: "2026-08-16",
     title: {
